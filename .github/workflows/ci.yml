@@ -1,0 +1,27 @@
+name: CI
+
+# Red de seguridad en cada cambio: si los tests de curación se rompen o el
+# contenido del CV deja de validar, quiero enterarme aquí y no en producción.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build

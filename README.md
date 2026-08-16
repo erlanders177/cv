@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Currículum vivo
 
-## Getting Started
+Mi currículum y mis proyectos en un solo sitio, sincronizado automáticamente
+con GitHub e incluyendo repositorios privados sin exponer su contenido.
 
-First, run the development server:
+- **El CV es la estructura**, los proyectos son la evidencia: cada habilidad
+  que declaro viene acompañada de los repositorios que la respaldan.
+- **Nada se publica sin que yo lo marque**: un repo aparece solo si le pongo el
+  topic `portfolio` en GitHub.
+- **Se actualiza solo**: una acción diaria lee GitHub, regenera los datos y el
+  PDF, y despliega si algo cambió.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Cómo decido qué se publica
+
+En la página del repositorio en GitHub, junto a «About», añado topics:
+
+| Topic                | Efecto                                              |
+| -------------------- | --------------------------------------------------- |
+| `portfolio`          | El proyecto aparece en el sitio                      |
+| `portfolio-featured` | Además sale destacado en el currículum               |
+
+Sin `portfolio` un repositorio no existe para el sitio. No hay lista de
+exclusión que se pueda olvidar de actualizar: es opt-in puro.
+
+Para afinar el texto, el orden o añadir cifras que la API no conoce, edito
+[`content/projects.yaml`](content/projects.yaml).
+
+### Repositorios privados
+
+De un repo privado se publica **solo metadata**: nombre, descripción propia,
+lenguajes, topics y fechas. Nunca la URL, la homepage ni el README. Además, el
+sync **falla a propósito** si marco un repo privado sin escribirle antes un
+título y un resumen a mano, para que su descripción cruda no acabe publicada
+por accidente.
+
+Advertencia consciente: el *nombre* del repositorio sí aparece en
+`content/projects.yaml`. Si algún día el nombre delata a un cliente, hay que
+renombrarlo en GitHub antes de marcarlo.
+
+## Estructura
+
+```
+content/profile.yaml     El currículum. Fuente de verdad del sitio y del PDF.
+content/projects.yaml    Ajustes por proyecto sobre lo que ya sabe GitHub.
+data/*.generated.json    Salida del sync. Se commitea para poder revisarla.
+src/lib/curate.ts        Único punto que decide qué se publica. Con tests.
+src/lib/skills.ts        Cruza habilidades declaradas con repos reales.
+scripts/sync-github.ts   Lee GitHub y escribe data/.
+scripts/generate-pdf.ts  Imprime /cv-print a public/cv-{es,en}.pdf.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desarrollo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev          # http://localhost:3000
+npm test             # reglas de privacidad y de evidencia
+npm run typecheck
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para sincronizar en local hace falta un token de acceso personal de GitHub con
+permiso **Contents: read-only**:
 
-## Learn More
+```bash
+GH_PAT=github_pat_… npm run sync
+```
 
-To learn more about Next.js, take a look at the following resources:
+Imprime qué va a publicar antes de escribir nada, y conviene revisar el diff de
+`data/projects.generated.json` antes de hacer push.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para regenerar los PDF:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build && npm run pdf
+```
 
-## Deploy on Vercel
+## Automatización
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[`.github/workflows/sync.yml`](.github/workflows/sync.yml) se ejecuta cada día,
+a mano desde la pestaña Actions, o por `repository_dispatch`. Ejecuta los tests
+de privacidad **antes** de sincronizar: si alguno falla, no se publica nada.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El token vive en el secreto `GH_PAT` del repositorio y nunca llega al navegador:
+el sitio es estático y no consulta a GitHub en tiempo de ejecución.
+
+## Cambiar qué busco
+
+Una línea en `content/profile.yaml`:
+
+```yaml
+status: encargos # encargos | ofertas | colaboraciones | no-disponible
+```
+
+Cambia el aviso de la cabecera y la llamada a la acción, en los dos idiomas.

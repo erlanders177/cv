@@ -1,0 +1,286 @@
+# =====================================================================
+#  EL CURRÍCULUM. Fuente de verdad del sitio y del PDF.
+#
+#  Decisiones de privacidad tomadas a propósito (este archivo es público
+#  porque el repositorio lo es):
+#   · Sin teléfono. Va solo en el PDF, y el PDF lo envías tú.
+#   · Sin nombre del instituto ni municipio exacto.
+#   · Ubicación a nivel de provincia.
+# =====================================================================
+
+name: Aarón Aranda Torrijos
+birthDate: "2010-06" # solo año y mes; de aquí sale la edad, sin exponer el día
+
+# Qué buscas ahora mismo. Cambia esta línea y se actualizan el aviso de la
+# cabecera, la llamada a la acción y el texto del PDF.
+# Valores: encargos | ofertas | colaboraciones | no-disponible
+status: encargos
+
+headline:
+  es: "Desarrollador Python · Software local, ligero y terminado"
+  en: "Python developer · Local-first software, lightweight and finished"
+
+summary:
+  es: >-
+    Tengo 16 años y programo desde 2024. En ese tiempo he publicado un paquete
+    de bioinformática en PyPI, una calculadora científica que funciona sin
+    conexión en navegador y escritorio, y un asistente de voz que corre en
+    local. Los tres comparten la misma obsesión: que el software funcione en
+    máquinas modestas y sin enviar datos fuera. Lo que mejor se me da es partir
+    un problema grande en trozos resolubles y no soltarlo hasta que funciona.
+  en: >-
+    I'm 16 and I've been programming since 2024. In that time I've published a
+    bioinformatics package on PyPI, a scientific calculator that works offline
+    in the browser and on desktop, and a voice assistant that runs locally. All
+    three share the same obsession: software that runs on modest hardware
+    without sending data anywhere. What I do best is breaking a large problem
+    into solvable pieces and not letting go until it works.
+
+photo: /foto.jpg # coloca tu foto de LinkedIn en public/foto.jpg
+
+contact:
+  email: aaron.aranda.t@gmail.com
+  # El teléfono se imprime en el PDF pero nunca se publica en la web.
+  phone: "+34 747 48 02 89"
+  location:
+    es: "Madrid, España"
+    en: "Madrid, Spain"
+  relocation:
+    es: "Trabajo en remoto"
+    en: "Remote only"
+  availability:
+    es: "Disponibilidad parcial, compatible con mis estudios"
+    en: "Part-time availability, alongside my studies"
+  github: erlanders177
+  linkedin: https://www.linkedin.com/in/aaron-aranda-torrijos-94628b425/
+  otherLinks:
+    - label: PyPI
+      url: https://pypi.org/project/bioforge/
+
+# Cifras verificables: cualquiera puede comprobarlas en los repositorios.
+highlights:
+  - label:
+      es: "Proyectos publicados"
+      en: "Published projects"
+    value: "3"
+  - label:
+      es: "Tests automatizados"
+      en: "Automated tests"
+    value: "1.080"
+  - label:
+      es: "Paquetes en PyPI"
+      en: "Packages on PyPI"
+    value: "1"
+  - label:
+      es: "Programando desde"
+      en: "Coding since"
+    value: "2024"
+
+# ---------------------------------------------------------------------
+# EXPERIENCIA Y LIDERAZGO
+# Todavía sin empleo remunerado. Lo que va aquí es responsabilidad real
+# ejercida, etiquetada con honestidad para que nadie se confunda.
+# ---------------------------------------------------------------------
+experience:
+  - id: club-ajedrez-era-reina
+    company: Club de ajedrez La Era de la Reina
+    role:
+      es: "Segundo responsable"
+      en: "Deputy lead"
+    kind: voluntariado
+    mode: presencial
+    location:
+      es: "Madrid, España"
+      en: "Madrid, Spain"
+    start: "2024-09"
+    end: null
+    summary:
+      es: "Segundo al mando del club, por detrás del profesor responsable."
+      en: "Second in command of the club, after the teacher in charge."
+    achievements:
+      - es: "Campeón absoluto del III Torneo Escolar de La Era de la Reina (2025)."
+        en: "Overall champion of the 3rd La Era de la Reina school tournament (2025)."
+      - es: "Varias temporadas compitiendo en la liga madrileña de ajedrez."
+        en: "Several seasons competing in the Madrid regional chess league."
+      - es: "Desarrollo de la web del club, actualmente en construcción."
+        en: "Building the club's website, currently in progress."
+    stack: []
+    projects: []
+
+  - id: certamen-robotica
+    company:
+      "Certamen de robótica escolar"
+    role:
+      es: "Responsable técnico del equipo"
+      en: "Team technical lead"
+    kind: academico
+    start: "2025-01"
+    end: "2025-06"
+    summary:
+      es: "Proyecto por parejas para un certamen de robótica del centro."
+      en: "Two-person project for a school robotics contest."
+    achievements:
+      - es: >-
+          Propuse el enfoque técnico que el equipo acabó adoptando por ser el
+          más viable, y dirigí la ejecución guiando a mi compañero.
+        en: >-
+          Proposed the technical approach the team adopted as the most viable
+          one, and led the execution, guiding my teammate.
+    stack: []
+    projects: []
+
+# ---------------------------------------------------------------------
+# FORMACIÓN
+# ---------------------------------------------------------------------
+education:
+  - id: bachillerato-tecnologico
+    institution:
+      "Bachillerato tecnológico"
+    degree:
+      es: "Bachillerato de Ciencias y Tecnología"
+      en: "Baccalaureate in Science and Technology"
+    location:
+      es: "Madrid, España"
+      en: "Madrid, Spain"
+    start: "2026-09"
+    end: "2028-06"
+    notes:
+      es: "En curso. Graduación prevista en 2028."
+      en: "In progress. Expected graduation in 2028."
+
+  - id: eso
+    institution:
+      "Educación Secundaria Obligatoria"
+    degree:
+      es: "Graduado en ESO, con diploma de aprovechamiento"
+      en: "Secondary education certificate, with merit diploma"
+    location:
+      es: "Madrid, España"
+      en: "Madrid, Spain"
+    start: "2022-09"
+    end: "2026-06"
+    notes:
+      es: "Notas destacadas: Tecnología (10), Proyecto de Investigación (9), Biología (8)."
+      en: "Standout grades: Technology (10), Research Project (9), Biology (8)."
+
+certifications: []
+
+# ---------------------------------------------------------------------
+# HABILIDADES
+# Niveles calibrados a lo que puedes defender en una prueba técnica.
+# `aliases` conecta cada skill con los repos que la usan.
+# ---------------------------------------------------------------------
+skills:
+  - id: lenguajes
+    label:
+      es: "Lenguajes"
+      en: "Languages"
+    items:
+      - name: Python
+        aliases: [python]
+        level: intermedio
+        since: "2024"
+      - name: HTML y CSS
+        aliases: [html, css]
+        level: basico
+      - name: C
+        aliases: [c]
+        level: basico
+        note:
+          es: "Usado para las rutinas críticas de BioForge vía ctypes."
+          en: "Used for BioForge's performance-critical routines via ctypes."
+      # SQL fuera a propósito: ningún proyecto lo usa todavía y no conviene
+      # afirmar en el CV nada que no se pueda defender en una prueba técnica.
+
+  - id: frameworks
+    label:
+      es: "Frameworks y librerías"
+      en: "Frameworks & libraries"
+    items:
+      - name: PyQt5
+        aliases: [pyqt5, pyqt, qt]
+        level: intermedio
+      - name: NumPy
+        aliases: [numpy]
+        level: intermedio
+      - name: SymPy
+        aliases: [sympy]
+        level: intermedio
+      - name: FastAPI
+        aliases: [fastapi]
+        level: basico
+      - name: Electron
+        aliases: [electron]
+        level: basico
+      - name: Pyodide y WebAssembly
+        aliases: [pyodide, webassembly, wasm]
+        level: intermedio
+
+  - id: dominios
+    label:
+      es: "Áreas de trabajo"
+      en: "Areas of work"
+    items:
+      - name: "Software local y offline"
+        aliases: [local-first, offline-first, privacy, edge-computing, pwa]
+      - name: "Bioinformática"
+        aliases: [bioinformatics, genomics, sequence-alignment, dna, read-mapping, minimizer]
+      - name: "Voz y asistentes"
+        aliases: [speech-recognition, text-to-speech, voice-assistant, piper-tts, vosk, vtuber]
+      - name: "LLM aplicados"
+        aliases: [llm, groq, ollama]
+      - name: "Cálculo simbólico"
+        aliases: [equation-solver, scientific-calculator, geometry, unit-converter]
+
+  - id: herramientas
+    label:
+      es: "Herramientas"
+      en: "Tools"
+    items:
+      - name: Git y GitHub
+        aliases: [git, github]
+        level: intermedio
+      - name: pytest
+        aliases: [pytest, testing]
+        level: intermedio
+      - name: "GitHub Actions"
+        aliases: [github-actions, ci, ci-cd]
+        level: intermedio
+        note:
+          es: "Seis pipelines en producción: tests, wheels de PyPI, APK y despliegue web."
+          en: "Six production pipelines: tests, PyPI wheels, APK builds and web deploys."
+      - name: Linux (Ubuntu)
+        aliases: [linux, ubuntu]
+        level: basico
+        note:
+          es: "Entorno secundario, usado para pruebas multiplataforma."
+          en: "Secondary environment, used for cross-platform testing."
+
+spokenLanguages:
+  - name:
+      es: "Español"
+      en: "Spanish"
+    level:
+      es: "Nativo"
+      en: "Native"
+  - name:
+      es: "Inglés"
+      en: "English"
+    level:
+      es: "Intermedio · lectura técnica y correo escrito"
+      en: "Intermediate · technical reading and written email"
+
+awards:
+  - title:
+      es: "Campeón absoluto, III Torneo Escolar de La Era de la Reina"
+      en: "Overall champion, 3rd La Era de la Reina school tournament"
+    issuer: "Club de ajedrez La Era de la Reina"
+    date: "2025-06"
+
+interests:
+  - es: "Biología y matemáticas"
+    en: "Biology and mathematics"
+  - es: "Ajedrez de competición"
+    en: "Competitive chess"
+  - es: "Teatro, lectura, escritura y debate"
+    en: "Theatre, reading, writing and debate"

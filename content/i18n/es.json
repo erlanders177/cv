@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "summary": "Perfil",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "education": "Formación",
+    "contact": "Contacto",
+    "allProjects": "Ver todos los proyectos",
+    "backToCv": "Volver al currículum"
+  },
+  "actions": {
+    "downloadPdf": "Descargar CV en PDF",
+    "toggleTheme": "Cambiar tema",
+    "toggleLanguage": "English",
+    "requestAccess": "Solicitar acceso al código",
+    "copyEmail": "Copiar",
+    "emailCopied": "¡Copiado!",
+    "viewCode": "Ver código",
+    "viewDemo": "Ver demo",
+    "viewProject": "Ver detalle"
+  },
+  "sections": {
+    "summaryTitle": "Perfil profesional",
+    "experienceTitle": "Experiencia y liderazgo",
+    "skillsTitle": "Habilidades técnicas",
+    "featuredTitle": "Proyectos destacados",
+    "projectsTitle": "Proyectos",
+    "educationTitle": "Formación",
+    "certificationsTitle": "Certificaciones",
+    "languagesTitle": "Idiomas",
+    "awardsTitle": "Reconocimientos",
+    "interestsTitle": "Intereses",
+    "contactTitle": "Contacto"
+  },
+  "labels": {
+    "present": "Actualidad",
+    "private": "Privado",
+    "public": "Público",
+    "featured": "Destacado",
+    "repos": "repositorios",
+    "repo": "repositorio",
+    "lastUsed": "Último uso",
+    "stack": "Tecnologías",
+    "role": "Rol",
+    "teamSize": "Equipo",
+    "status": "Estado",
+    "stars": "estrellas",
+    "updated": "Actualizado",
+    "created": "Creado",
+    "location": "Ubicación",
+    "availability": "Disponibilidad",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "filterAll": "Todos",
+    "filterBy": "Filtrar por tecnología",
+    "yearsOld": "años",
+    "kind": {
+      "empleo": "Empleo",
+      "freelance": "Freelance",
+      "practicas": "Prácticas",
+      "voluntariado": "Voluntariado",
+      "academico": "Académico",
+      "propio": "Proyecto propio"
+    },
+    "noProjects": "Todavía no hay proyectos publicados.",
+    "privateNotice": "Este proyecto es privado. Puedo enseñarte el código en una entrevista o darte acceso puntual."
+  },
+  "levels": {
+    "basico": "básico",
+    "intermedio": "intermedio",
+    "avanzado": "avanzado",
+    "experto": "experto"
+  },
+  "status": {
+    "encargos": "Disponible para proyectos por encargo y colaboraciones",
+    "ofertas": "Abierto a escuchar ofertas",
+    "colaboraciones": "Abierto a colaborar en proyectos",
+    "no-disponible": "Sin disponibilidad ahora mismo"
+  },
+  "statusCta": {
+    "encargos": "Cuéntame tu proyecto",
+    "ofertas": "Hablemos",
+    "colaboraciones": "Escríbeme",
+    "no-disponible": "Escríbeme igualmente"
+  },
+  "meta": {
+    "cvTitle": "Currículum",
+    "projectsTitle": "Proyectos",
+    "descriptionSuffix": "Currículum y proyectos"
+  },
+  "requestAccess": {
+    "subject": "Solicitud de acceso al proyecto",
+    "body": "Hola:\n\nMe interesa revisar el código de tu proyecto. Te cuento quién soy y para qué proceso lo necesito:\n\n"
+  }
+}

@@ -1,26 +1,345 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   Tokens. Paleta clara por defecto; el tema oscuro solo redefine
+   valores. `data-theme` gana sobre la preferencia del sistema.
+   --------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Fuentes del sistema, sin next/font ni Google Fonts: el build no depende
+     de la red, la página no hace peticiones a terceros y no hay ni un byte
+     de fuente que descargar antes de leer el currículum. */
+  --font-sans-var: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono-var: ui-monospace, "Cascadia Mono", "Segoe UI Mono",
+    "Liberation Mono", Menlo, Consolas, monospace;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-alt: #f4f4f2;
+  --border: #e2e2dd;
+  --text: #1a1a18;
+  --text-muted: #5f5f59;
+  --text-subtle: #8a8a82;
+  --accent: #b8502a;
+  --accent-soft: #f3e3dc;
+  --ring: #b8502a;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --bg: #14140f;
+    --surface: #1c1c17;
+    --surface-alt: #24241d;
+    --border: #33332a;
+    --text: #f0efe8;
+    --text-muted: #a8a79c;
+    --text-subtle: #7b7a70;
+    --accent: #e8845c;
+    --accent-soft: #35231b;
+    --ring: #e8845c;
   }
 }
 
+:root[data-theme="dark"] {
+  --bg: #14140f;
+  --surface: #1c1c17;
+  --surface-alt: #24241d;
+  --border: #33332a;
+  --text: #f0efe8;
+  --text-muted: #a8a79c;
+  --text-subtle: #7b7a70;
+  --accent: #e8845c;
+  --accent-soft: #35231b;
+  --ring: #e8845c;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-sans-var);
+  --font-mono: var(--font-mono-var);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans-var), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Icono del conmutador de tema: lo elige el CSS, no React, para que sea
+   correcto ya en el primer render. */
+.theme-icon-dark {
+  display: none;
+}
+:root[data-theme="dark"] .theme-icon-dark {
+  display: inline;
+}
+:root[data-theme="dark"] .theme-icon-light {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-dark {
+    display: inline;
+  }
+  :root:not([data-theme="light"]) .theme-icon-light {
+    display: none;
+  }
+}
+
+/* El foco debe ser visible siempre: el CV se navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------
+   CV imprimible (/[locale]/cv-print). Medidas en pt porque el
+   destino es papel A4, no pantalla. Una sola columna y texto real:
+   lo que un ATS necesita para poder leerlo.
+   --------------------------------------------------------------- */
+.cv-print {
+  --ink: #000;
+  --ink-soft: #333;
+  --rule: #999;
+
+  max-width: 186mm; /* A4 menos los márgenes de @page */
+  margin: 0 auto;
+  padding: 10mm 8mm;
+  background: #fff;
+  color: var(--ink);
+  font-size: 9.5pt;
+  line-height: 1.42;
+}
+
+.cv-print .print-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10mm;
+}
+
+.cv-print .print-photo {
+  width: 24mm;
+  height: 29mm;
+  object-fit: cover;
+  border-radius: 1.5mm;
+  flex-shrink: 0;
+}
+
+.cv-print h1 {
+  font-size: 19pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cv-print .headline {
+  font-size: 10.5pt;
+  color: var(--ink-soft);
+  margin-top: 1pt;
+}
+
+.cv-print .contact {
+  font-size: 8.5pt;
+  color: var(--ink-soft);
+  margin-top: 3pt;
+}
+
+.cv-print section {
+  margin-top: 11pt;
+}
+
+.cv-print h2 {
+  font-size: 8.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  border-bottom: 0.6pt solid var(--rule);
+  padding-bottom: 2pt;
+  margin-bottom: 6pt;
+}
+
+.cv-print h3 {
+  font-size: 10pt;
+  font-weight: 600;
+}
+
+.cv-print .entry {
+  margin-top: 7pt;
+  break-inside: avoid;
+}
+.cv-print .entry:first-of-type {
+  margin-top: 0;
+}
+
+.cv-print .entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8pt;
+}
+
+.cv-print .meta {
+  font-size: 8.5pt;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.cv-print .kind,
+.cv-print .url {
+  font-size: 8.5pt;
+  color: var(--ink-soft);
+}
+
+.cv-print .tag {
+  font-weight: 400;
+  font-size: 8.5pt;
+  color: var(--ink-soft);
+}
+
+.cv-print ul {
+  margin-top: 2pt;
+  padding-left: 11pt;
+  list-style: disc;
+}
+
+.cv-print li {
+  margin-top: 1.5pt;
+}
+
+.cv-print .skill-row {
+  margin-top: 2.5pt;
+}
+
+.cv-print .award {
+  margin-top: 2pt;
+}
+
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+/* ---------------------------------------------------------------
+   README de proyecto. Estilos mínimos escritos a mano en lugar de
+   @tailwindcss/typography: solo necesitamos estas etiquetas.
+   --------------------------------------------------------------- */
+.prose-cv {
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.prose-cv > * + * {
+  margin-top: 1rem;
+}
+.prose-cv h1,
+.prose-cv h2,
+.prose-cv h3 {
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+}
+.prose-cv h1 { font-size: 1.5rem; }
+.prose-cv h2 { font-size: 1.25rem; }
+.prose-cv h3 { font-size: 1.05rem; }
+.prose-cv a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-cv ul,
+.prose-cv ol {
+  padding-left: 1.25rem;
+}
+.prose-cv ul { list-style: disc; }
+.prose-cv ol { list-style: decimal; }
+.prose-cv li + li { margin-top: 0.35rem; }
+.prose-cv code {
+  font-family: var(--font-mono-var), ui-monospace, monospace;
+  font-size: 0.875em;
+  background: var(--surface-alt);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+.prose-cv pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.prose-cv pre code {
+  background: none;
+  padding: 0;
+}
+.prose-cv blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  color: var(--text-subtle);
+}
+.prose-cv img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.prose-cv table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.prose-cv th,
+.prose-cv td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.7rem;
+  text-align: left;
+}
+
+/* ---------------------------------------------------------------
+   Impresión: imprimir la web desde el navegador debe dar un CV
+   decente aunque el PDF oficial se genere aparte con Playwright.
+   --------------------------------------------------------------- */
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #ffffff;
+    --border: #cccccc;
+    --text: #000000;
+    --text-muted: #333333;
+    --text-subtle: #555555;
+    --accent: #000000;
+    --accent-soft: #ffffff;
+  }
+
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Nunca partir un puesto o una tarjeta entre dos páginas. */
+  [data-print="keep"] {
+    break-inside: avoid;
+  }
 }

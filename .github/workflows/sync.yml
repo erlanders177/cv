@@ -1,0 +1,69 @@
+name: Actualizar proyectos y CV
+
+# El sitio se mantiene solo desde aquí:
+#   1. lee GitHub con el token (que nunca sale de Actions),
+#   2. cura qué se puede publicar y lo escribe en data/,
+#   3. regenera los PDF del currículum,
+#   4. commitea solo si algo cambió de verdad.
+#
+# Ese commit es lo que dispara el despliegue en Vercel, y además deja un
+# diff revisable de exactamente qué información se ha publicado.
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # cada día a las 05:00 UTC
+  workflow_dispatch: # botón manual en la pestaña Actions
+  repository_dispatch: # para disparar desde otros repos
+    types: [portfolio-update]
+
+# Evita que dos ejecuciones se pisen al commitear.
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Las reglas de curación se comprueban ANTES de tocar nada: si un test
+      # de privacidad falla, el workflow para y no se publica nada.
+      - name: Comprobar las reglas de privacidad
+        run: npm test
+
+      - name: Sincronizar con GitHub
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: npm run sync
+
+      - name: Construir el sitio
+        run: npm run build
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Generar los PDF del currículum
+        run: npm run pdf
+
+      - name: Commitear si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ public/cv-*.pdf
+          if git diff --staged --quiet; then
+            echo "Sin cambios: no hay nada que publicar."
+          else
+            git commit -m "chore: actualizar proyectos y CV desde GitHub"
+            git push
+          fi

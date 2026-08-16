@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "summary": "Profile",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact",
+    "allProjects": "See all projects",
+    "backToCv": "Back to résumé"
+  },
+  "actions": {
+    "downloadPdf": "Download PDF résumé",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Español",
+    "requestAccess": "Request code access",
+    "copyEmail": "Copy",
+    "emailCopied": "Copied!",
+    "viewCode": "View code",
+    "viewDemo": "View demo",
+    "viewProject": "View details"
+  },
+  "sections": {
+    "summaryTitle": "Professional summary",
+    "experienceTitle": "Experience & leadership",
+    "skillsTitle": "Technical skills",
+    "featuredTitle": "Featured projects",
+    "projectsTitle": "Projects",
+    "educationTitle": "Education",
+    "certificationsTitle": "Certifications",
+    "languagesTitle": "Languages",
+    "awardsTitle": "Awards",
+    "interestsTitle": "Interests",
+    "contactTitle": "Contact"
+  },
+  "labels": {
+    "present": "Present",
+    "private": "Private",
+    "public": "Public",
+    "featured": "Featured",
+    "repos": "repositories",
+    "repo": "repository",
+    "lastUsed": "Last used",
+    "stack": "Tech stack",
+    "role": "Role",
+    "teamSize": "Team",
+    "status": "Status",
+    "stars": "stars",
+    "updated": "Updated",
+    "created": "Created",
+    "location": "Location",
+    "availability": "Availability",
+    "email": "Email",
+    "phone": "Phone",
+    "filterAll": "All",
+    "filterBy": "Filter by technology",
+    "yearsOld": "years old",
+    "kind": {
+      "empleo": "Employment",
+      "freelance": "Freelance",
+      "practicas": "Internship",
+      "voluntariado": "Volunteering",
+      "academico": "Academic",
+      "propio": "Personal project"
+    },
+    "noProjects": "No projects published yet.",
+    "privateNotice": "This project is private. I can walk you through the code in an interview or grant temporary access."
+  },
+  "levels": {
+    "basico": "basic",
+    "intermedio": "intermediate",
+    "avanzado": "advanced",
+    "experto": "expert"
+  },
+  "status": {
+    "encargos": "Available for freelance projects and collaborations",
+    "ofertas": "Open to opportunities",
+    "colaboraciones": "Open to collaborating on projects",
+    "no-disponible": "Not available right now"
+  },
+  "statusCta": {
+    "encargos": "Tell me about your project",
+    "ofertas": "Let's talk",
+    "colaboraciones": "Get in touch",
+    "no-disponible": "Reach out anyway"
+  },
+  "meta": {
+    "cvTitle": "Résumé",
+    "projectsTitle": "Projects",
+    "descriptionSuffix": "Résumé and projects"
+  },
+  "requestAccess": {
+    "subject": "Code access request for",
+    "body": "Hi,\n\nI'd like to review the code for this project. Here's who I am and the process it's for:\n\n"
+  }
+}

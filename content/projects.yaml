@@ -1,0 +1,155 @@
+# =====================================================================
+#  Overrides de proyectos.
+#
+#  QUÉ SE MUESTRA lo decides en GitHub, no aquí: añade el topic
+#  `portfolio` a un repo (público o privado) y aparecerá en el sitio.
+#  Añade además `portfolio-featured` para que salga en el currículum.
+#
+#  Este archivo solo MEJORA lo que GitHub ya sabe: cuenta el problema que
+#  resolvías, fija el orden y aporta las cifras que la API no conoce.
+# =====================================================================
+
+projects:
+  - slug: bioforge
+    title:
+      es: "BioForge"
+      en: "BioForge"
+    summary:
+      es: >-
+        Motor de bioinformática pensado para equipos modestos y sin conexión:
+        procesa genomas completos sin que ningún dato salga del dispositivo.
+      en: >-
+        A bioinformatics engine built for modest, offline machines: it
+        processes whole genomes without any data leaving the device.
+    highlights:
+      - es: >-
+          Consume 6,9 veces menos memoria que Biopython al cargar FASTQ
+          (115 MB frente a 801 MB) gracias a una codificación propia de 5 bits.
+        en: >-
+          Uses 6.9× less memory than Biopython when loading FASTQ (115 MB vs
+          801 MB) thanks to a custom 5-bit encoding.
+      - es: >-
+          El mapeo de lecturas coloca el 99,8 % en la posición correcta y
+          rinde a la par que minimap2 en multinúcleo.
+        en: >-
+          Read mapping places 99.8% at the correct position and matches
+          minimap2 on multi-core throughput.
+      - es: >-
+          546 tests automatizados que se ejecutan en cada cambio, centrados en
+          los puntos donde un fallo corrompería los datos.
+        en: >-
+          546 automated tests running on every change, focused on the points
+          where a bug would corrupt the data.
+      - es: >-
+          Aprendí el dominio desde cero: partí de la biología de 4.º de la ESO
+          e investigué las limitaciones reales de las herramientas existentes.
+        en: >-
+          I learned the domain from scratch, starting from school-level biology
+          and researching the real limitations of existing tools.
+    role:
+      es: "Autor único"
+      en: "Sole author"
+    teamSize: 1
+    status: activo
+    order: 1
+    # `stack` añade lo que la API de GitHub no puede detectar sola.
+    stack: [pypi, ctypes, pytest, github-actions]
+    links:
+      - label: PyPI
+        url: https://pypi.org/project/bioforge/
+
+  - slug: Axioma
+    title:
+      es: "Axioma"
+      en: "Axioma"
+    summary:
+      es: >-
+        Calculadora científica en español que funciona sin conexión en
+        navegador, móvil y escritorio desde una única base de código.
+      en: >-
+        A Spanish-language scientific calculator that works offline in the
+        browser, on mobile and on desktop from a single codebase.
+    highlights:
+      - es: >-
+          Una sola base de código para tres plataformas, resolviendo Python en
+          el navegador con Pyodide sobre WebAssembly y PyQt5 en escritorio.
+        en: >-
+          One codebase for three platforms, running Python in the browser via
+          Pyodide on WebAssembly and PyQt5 on desktop.
+      - es: >-
+          El APK pesa 1,2 MB frente a los 70 MB del ejecutable de escritorio,
+          porque la versión móvil no duplica el runtime.
+        en: >-
+          The APK is 1.2 MB versus 70 MB for the desktop build, because the
+          mobile version doesn't duplicate the runtime.
+      - es: >-
+          61 figuras geométricas, 555 unidades y resolución inversa: además del
+          área a partir del lado, calcula el lado a partir del área.
+        en: >-
+          61 geometric figures, 555 units and inverse solving: as well as area
+          from side length, it derives side length from area.
+      - es: >-
+          534 tests cubren conversiones, cálculo geométrico, validación de
+          entrada y los dieciséis módulos de interfaz.
+        en: >-
+          534 tests cover conversions, geometry, input validation and all
+          sixteen interface modules.
+      - es: >-
+          Fue mi primer proyecto: lo empecé en 3.º de la ESO y lo retomé un año
+          después para rehacer con criterio lo que había resuelto a tientas.
+        en: >-
+          My first project: I started it at 15 and came back a year later to
+          rebuild, with proper judgement, what I'd first solved by trial.
+    role:
+      es: "Autor único"
+      en: "Sole author"
+    teamSize: 1
+    status: estable
+    order: 2
+    stack: [pyodide, webassembly, pwa, pytest, github-actions]
+
+  - slug: sakura-asistente
+    title:
+      es: "Sakura"
+      en: "Sakura"
+    summary:
+      es: >-
+        Asistente de escritorio por voz que automatiza tareas del ordenador
+        con un modelo local, y sube a la nube solo si tú lo pides.
+      en: >-
+        A voice desktop assistant that automates computer tasks with a local
+        model, reaching the cloud only when you ask it to.
+    highlights:
+      - es: >-
+          Arquitectura de dos niveles: Ollama en local para acciones como poner
+          música, buscar u organizar el correo; Groq opcional para respuestas
+          más elaboradas. El usuario decide cuánto sale del equipo.
+        en: >-
+          Two-tier architecture: local Ollama for actions like playing music,
+          searching or sorting email; optional Groq for richer answers. The
+          user decides how much leaves the machine.
+      - es: >-
+          Menos de 1 segundo de latencia con Groq y entre 3 y 5 en modo
+          totalmente local, eligiendo un modelo pequeño a propósito.
+        en: >-
+          Under 1 second of latency with Groq, 3–5 seconds fully local, by
+          deliberately choosing a small model.
+      - es: >-
+          Diagnostiqué una subida del consumo de CPU al 10 % rastreándola hasta
+          las animaciones del avatar, y la corregí recortándolas.
+        en: >-
+          Tracked a CPU spike to 10% down to the avatar animations and fixed it
+          by cutting them back.
+      - es: >-
+          Lo más difícil no fue ninguna pieza suelta, sino sostener el
+          equilibrio: cualquier añadido disparaba el consumo del conjunto.
+        en: >-
+          The hard part wasn't any single piece but holding the balance: any
+          addition would blow up the whole system's resource use.
+    role:
+      es: "Autor único"
+      en: "Sole author"
+    teamSize: 1
+    status: estable
+    order: 3
+    stack: [ollama, groq, vrm, pytest, github-actions]

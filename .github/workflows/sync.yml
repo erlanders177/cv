@@ -53,6 +53,11 @@ jobs:
       - name: Instalar Chromium
         run: npx playwright install --with-deps chromium
 
+      # Sin esto el runner no tiene las métricas de Arial y el PDF se
+      # maqueta distinto que en un equipo con Windows o macOS.
+      - name: Instalar las fuentes del currículum
+        run: sudo apt-get install -y --no-install-recommends fonts-liberation
+
       - name: Generar los PDF del currículum
         run: npm run pdf
 

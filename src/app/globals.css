@@ -121,6 +121,13 @@ body {
   --ink-soft: #333;
   --rule: #999;
 
+  /* Fuente fija, no la del sistema: este PDF se genera en Linux (Actions) y
+     se revisa en Windows, y si la tipografía cambia entre ambos el
+     currículum se desborda a una segunda página sin que nadie lo note.
+     Liberation Sans tiene exactamente las métricas de Arial, así que la
+     maquetación es idéntica en los dos. */
+  font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+
   max-width: 186mm; /* A4 menos los márgenes de @page */
   margin: 0 auto;
   /* Sin padding propio: los márgenes ya los pone @page, y duplicarlos era
@@ -129,7 +136,7 @@ body {
   background: #fff;
   color: var(--ink);
   font-size: 9pt;
-  line-height: 1.34;
+  line-height: 1.29;
 }
 
 .cv-print .print-header {
@@ -166,7 +173,7 @@ body {
 }
 
 .cv-print section {
-  margin-top: 6pt;
+  margin-top: 5pt;
 }
 
 .cv-print h2 {

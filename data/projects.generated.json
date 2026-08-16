@@ -283,5 +283,55 @@
     "images": [],
     "links": [],
     "order": 3
+  },
+  {
+    "slug": "cv",
+    "name": "cv",
+    "title": {
+      "es": "cv",
+      "en": "cv"
+    },
+    "summary": {
+      "es": "Mi currículum web, sincronizado automáticamente con GitHub. Next.js, TypeScript y un pipeline que publica solo lo que marco.",
+      "en": "Mi currículum web, sincronizado automáticamente con GitHub. Next.js, TypeScript y un pipeline que publica solo lo que marco."
+    },
+    "highlights": [],
+    "visibility": "public",
+    "featured": false,
+    "url": "https://github.com/erlanders177/cv",
+    "homepage": "https://cv-aaron-5fae.vercel.app",
+    "readme": "# Currículum vivo\n\nMi currículum y mis proyectos en un solo sitio, sincronizado automáticamente\ncon GitHub e incluyendo repositorios privados sin exponer su contenido.\n\n- **El CV es la estructura**, los proyectos son la evidencia: cada habilidad\n  que declaro viene acompañada de los repositorios que la respaldan.\n- **Nada se publica sin que yo lo marque**: un repo aparece solo si le pongo el\n  topic `portfolio` en GitHub.\n- **Se actualiza solo**: una acción diaria lee GitHub, regenera los datos y el\n  PDF, y despliega si algo cambió.\n\n## Cómo decido qué se publica\n\nEn la página del repositorio en GitHub, junto a «About», añado topics:\n\n| Topic                | Efecto                                              |\n| -------------------- | --------------------------------------------------- |\n| `portfolio`          | El proyecto aparece en el sitio                      |\n| `portfolio-featured` | Además sale destacado en el currículum               |\n\nSin `portfolio` un repositorio no existe para el sitio. No hay lista de\nexclusión que se pueda olvidar de actualizar: es opt-in puro.\n\nPara afinar el texto, el orden o añadir cifras que la API no conoce, edito\n[`content/projects.yaml`](content/projects.yaml).\n\n### Repositorios privados\n\nDe un repo privado se publica **solo metadata**: nombre, descripción propia,\nlenguajes, topics y fechas. Nunca la URL, la homepage ni el README. Además, el\nsync **falla a propósito** si marco un repo privado sin escribirle antes un\ntítulo y un resumen a mano, para que su descripción cruda no acabe publicada\npor accidente.\n\nAdvertencia consciente: el *nombre* del repositorio sí aparece en\n`content/projects.yaml`. Si algún día el nombre delata a un cliente, hay que\nrenombrarlo en GitHub antes de marcarlo.\n\n## Estructura\n\n```\ncontent/profile.yaml     El currículum. Fuente de verdad del sitio y del PDF.\ncontent/projects.yaml    Ajustes por proyecto sobre lo que ya sabe GitHub.\ndata/*.generated.json    Salida del sync. Se commitea para poder revisarla.\nsrc/lib/curate.ts        Único punto que decide qué se publica. Con tests.\nsrc/lib/skills.ts        Cruza habilidades declaradas con repos reales.\nscripts/sync-github.ts   Lee GitHub y escribe data/.\nscripts/generate-pdf.ts  Imprime /cv-print a public/cv-{es,en}.pdf.\n```\n\n## Desarrollo\n\n```bash\nnpm install\nnpm run dev          # http://localhost:3000\nnpm test             # reglas de privacidad y de evidencia\nnpm run typecheck\n```\n\nPara sincronizar en local hace falta un token de acceso personal de GitHub con\npermiso **Contents: read-only**:\n\n```bash\nGH_PAT=github_pat_… npm run sync\n```\n\nImprime qué va a publicar antes de escribir nada, y conviene revisar el diff de\n`data/projects.generated.json` antes de hacer push.\n\nPara regenerar los PDF:\n\n```bash\nnpm run build && npm run pdf\n```\n\n## Automatización\n\n[`.github/workflows/sync.yml`](.github/workflows/sync.yml) se ejecuta cada día,\na mano desde la pestaña Actions, o por `repository_dispatch`. Ejecuta los tests\nde privacidad **antes** de sincronizar: si alguno falla, no se publica nada.\n\nEl token vive en el secreto `GH_PAT` del repositorio y nunca llega al navegador:\nel sitio es estático y no consulta a GitHub en tiempo de ejecución.\n\n## Cambiar qué busco\n\nUna línea en `content/profile.yaml`:\n\n```yaml\nstatus: encargos # encargos | ofertas | colaboraciones | no-disponible\n```\n\nCambia el aviso de la cabecera y la llamada a la acción, en los dos idiomas.\n",
+    "topics": [
+      "cv",
+      "github-actions",
+      "nextjs",
+      "resume",
+      "tailwindcss",
+      "typescript"
+    ],
+    "languages": [
+      {
+        "name": "TypeScript",
+        "bytes": 92539
+      },
+      {
+        "name": "CSS",
+        "bytes": 7670
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 559
+      }
+    ],
+    "stack": [],
+    "stars": 0,
+    "createdAt": "2026-08-16T11:46:27Z",
+    "pushedAt": "2026-08-16T12:35:03Z",
+    "role": null,
+    "teamSize": null,
+    "status": null,
+    "images": [],
+    "links": [],
+    "order": null
   }
 ]

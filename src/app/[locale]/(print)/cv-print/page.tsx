@@ -102,11 +102,12 @@ export default async function CvPrintPage({
                 </span>
               </div>
               <p>{pick(project.summary, locale)}</p>
+              {/* Solo el primer punto de cada proyecto: en papel compite por
+                  espacio con todo lo demás, y el detalle completo está en la
+                  web, a un clic de la URL que aparece justo debajo. */}
               {project.highlights.length > 0 && (
                 <ul>
-                  {project.highlights.slice(0, 2).map((highlight) => (
-                    <li key={pick(highlight, locale)}>{pick(highlight, locale)}</li>
-                  ))}
+                  <li>{pick(project.highlights[0], locale)}</li>
                 </ul>
               )}
               {(project.url || project.homepage) && (
@@ -137,7 +138,7 @@ export default async function CvPrintPage({
               </p>
               {job.achievements.length > 0 && (
                 <ul>
-                  {job.achievements.map((achievement) => (
+                  {job.achievements.slice(0, 2).map((achievement) => (
                     <li key={pick(achievement, locale)}>{pick(achievement, locale)}</li>
                   ))}
                 </ul>

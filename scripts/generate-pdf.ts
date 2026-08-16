@@ -13,7 +13,7 @@ import { spawn, type ChildProcess } from "node:child_process";
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 
-import { chromium } from "playwright";
+import { chromium, type Browser } from "playwright";
 
 import { LOCALES } from "../src/lib/i18n";
 
@@ -48,6 +48,34 @@ async function waitForServer(timeoutMs = 60_000): Promise<void> {
   );
 }
 
+/**
+ * Chromium propio si está descargado; si no, el Edge o el Chrome que ya trae
+ * el sistema. Cualquiera de los tres imprime igual, y así generar el PDF no
+ * obliga a bajarse 190 MB de navegador.
+ */
+async function launchBrowser(): Promise<Browser> {
+  const candidates = [
+    { label: "Chromium de Playwright", options: {} },
+    { label: "Microsoft Edge", options: { channel: "msedge" } },
+    { label: "Google Chrome", options: { channel: "chrome" } },
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      const browser = await chromium.launch(candidate.options);
+      console.log(`Navegador: ${candidate.label}`);
+      return browser;
+    } catch {
+      // Ese no está disponible: probamos el siguiente.
+    }
+  }
+
+  throw new Error(
+    "No hay ningún navegador disponible. Instala uno con:\n" +
+      "  npx playwright install chromium",
+  );
+}
+
 async function main() {
   mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -56,7 +84,7 @@ async function main() {
   try {
     await waitForServer();
 
-    const browser = await chromium.launch();
+    const browser = await launchBrowser();
     const page = await browser.newPage();
 
     for (const locale of LOCALES) {
